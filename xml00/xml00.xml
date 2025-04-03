@@ -1,19 +1,28 @@
 <?xml version = "1.0"?>
 <!DOCTYPE alumno [
-    <!ELEMENT alumno (nombre, nacimiento)>
+    <!ELEMENT alumnos (alumno*)>
+    <!ELEMENT alumno (nombre, apellido, nacimiento, curso)>
     <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT apellido (#PCDATA)>
     <!ELEMENT nacimiento (#PCDATA)>
-    <!ELEMENT alumnos (alumno+)>
+    <!ELEMENT curso(#PCDATA)>
+
+    <!ATTLIST alumno
+    id ID #REQUIRED
+    edad CDATA #IMPLIED
+    becado (si|no) "no">
 
 ]>
-<alumnos>
-    <alumno>
-        <nombre> Eren Jaeger </nombre>
-        <nacimiento> 30/marzo/632 </nacimiento>
-    </alumno>
 
-    <alumno>
-        <nombre> Mikasa Ackerman </nombre>
-        <nacimiento> 10/febrero/835 </nacimiento>
+
+<alumnos>
+    <alumno id="002" edad="20" becado="si">
+        <nombre> MIKASA </nombre>
+        <apellido> ACKERMAN </apellido>
+        <nacimiento> 20/04/835 </nacimiento>
+        <curso> Fundamentos web </curso>
+        
+
     </alumno>
 </alumnos>
+
