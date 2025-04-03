@@ -1,0 +1,19 @@
+<?xml version = "1.0"?>
+<!DOCTYPE alumno [
+    <!ELEMENT alumno (nombre, nacimiento)>
+    <!ELEMENT nombre (#PCDATA)>
+    <!ELEMENT nacimiento (#PCDATA)>
+    <!ELEMENT alumnos (alumno+)>
+
+]>
+<alumnos>
+    <alumno>
+        <nombre> Eren Jaeger </nombre>
+        <nacimiento> 30/marzo/632 </nacimiento>
+    </alumno>
+
+    <alumno>
+        <nombre> Mikasa Ackerman </nombre>
+        <nacimiento> 10/febrero/835 </nacimiento>
+    </alumno>
+</alumnos>
