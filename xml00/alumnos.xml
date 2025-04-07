@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alumnos>
+    <alumno>
+        <nombre>Eren</nombre>
+        <nacimiento>2000-02-02</nacimiento>
+    </alumno>
+    <alumno>
+        <nombre>Eren Jaeger</nombre>
+        <nacimiento>2012-02-05</nacimiento>
+    </alumno>
+</alumnos>
