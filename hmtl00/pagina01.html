@@ -10,28 +10,37 @@
     <table id="demo"></table>
 
 <script>
-function loadXMLDoc() {
-  const xhttp = new XMLHttpRequest();
-  xhttp.onload = function() {
-    const xmlDoc = xhttp.responseXML;
-    const cd = xmlDoc.getElementsByTagName("CD");
-    myFunction(cd);
-  }
-  xhttp.open("GET", "cd_catalog.xml");
-  xhttp.send();
-}
 
-function myFunction(cd) {
-  let table="<tr><th>Artist</th><th>Title</th></tr>";
-  for (let i = 0; i < cd.length; i++) {
-    table += "<tr><td>" +
-    cd[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
-    "</td><td>" +
-    cd[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
-    "</td></tr>";
+// Función principal usando async/await y fetch
+const loadXMLDoc = async () => {
+  try {
+    const response = await fetch('cd_catalog.xml');
+    const text = await response.text();
+    const parser = new DOMParser();
+    const xmlDoc = parser.parseFromString(text, "application/xml");
+    const cds = xmlDoc.getElementsByTagName("CD");
+
+    myFunction(cds);
+  } catch (error) {
+    console.error('Error loading XML:', error);
   }
-  document.getElementById("demo").innerHTML = table;
-}
+};
+
+// Función para mostrar los datos en una tabla
+const myFunction = (cds) => {
+  let table = "<tr><th>Artist</th><th>Title</th></tr>";
+  Array.from(cds).forEach(cd => {
+    const artist = cd.getElementsByTagName("ARTIST")[0]?.textContent || "N/A";
+    const title = cd.getElementsByTagName("TITLE")[0]?.textContent || "N/A";
+    table += `<tr><td>${artist}</td><td>${title}</td></tr>`;
+  });
+
+  document.getElementById("demo").innerHTML = `<table border="1">${table}</table>`;
+};
+
+// Llamar a la función al cargar la página
+loadXMLDoc();
+
 </script>
 
 </body>
